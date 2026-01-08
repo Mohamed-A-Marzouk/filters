@@ -1,0 +1,17 @@
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\controller\CustomerController.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\controller\TechnicianController.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\dto\CustomerDTO.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\dto\TechnicianDTO.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\entity\Customer.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\entity\Technician.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\exception\ErrorDetails.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\exception\GlobalExceptionHandler.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\exception\PhoneAlreadyExistsException.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\exception\ResourceNotFoundException.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\mapper\CustomerMapper.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\mapper\TechnicianMapper.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\repository\CustomerRepository.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\repository\TechnicianRepository.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\service\CustomerService.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\service\TechnicianService.java
+C:\work\water-filters\water-filters\src\main\java\com\work\waterfilters\WaterFiltersApplication.java
