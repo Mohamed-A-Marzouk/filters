@@ -1,7 +1,6 @@
 com\work\waterfilters\exception\ErrorDetails.class
 com\work\waterfilters\mapper\SparePartMapper.class
 com\work\waterfilters\controller\SparePartController.class
-com\work\waterfilters\dto\FilterDTO.class
 com\work\waterfilters\mapper\CustomerMapperImpl.class
 com\work\waterfilters\mapper\CustomerMapper.class
 com\work\waterfilters\mapper\SparePartMapperImpl.class
@@ -11,8 +10,8 @@ com\work\waterfilters\service\CustomerService.class
 com\work\waterfilters\controller\TechnicianController.class
 com\work\waterfilters\entity\SparePart.class
 com\work\waterfilters\dto\CustomerDTO.class
+com\work\waterfilters\entity\FilterModels.class
 com\work\waterfilters\controller\CustomerController.class
-com\work\waterfilters\entity\Filter.class
 com\work\waterfilters\service\SparePartService.class
 com\work\waterfilters\mapper\TechnicianMapper.class
 com\work\waterfilters\repository\TechnicianRepository.class
@@ -24,6 +23,7 @@ com\work\waterfilters\mapper\FilterMapperImpl.class
 com\work\waterfilters\exception\PhoneAlreadyExistsException.class
 com\work\waterfilters\exception\ResourceNotFoundException.class
 com\work\waterfilters\repository\SparePartRepository.class
+com\work\waterfilters\dto\FilterModelDTO.class
 com\work\waterfilters\dto\SparePartDto.class
 com\work\waterfilters\WaterFiltersApplication.class
 com\work\waterfilters\repository\FilterRepository.class

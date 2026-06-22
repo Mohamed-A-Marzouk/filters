@@ -1,8 +1,6 @@
 package com.work.waterfilters.controller;
 
-import com.work.waterfilters.dto.FilterDTO;
-import com.work.waterfilters.dto.SparePartDto;
-import com.work.waterfilters.mapper.FilterMapper;
+import com.work.waterfilters.dto.FilterModelDTO;
 import com.work.waterfilters.service.FilterService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,33 +17,33 @@ public class FilterController {
     private final FilterService service;
 
     @GetMapping
-    public ResponseEntity<List<FilterDTO>> getAllFilters() {
-        return ResponseEntity.ok(service.getAllFilters());
+    public ResponseEntity<List<FilterModelDTO>> getAllFilterModels() {
+        return ResponseEntity.ok(service.getAllFilterModels());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FilterDTO> getFilterById(Long id) {
-        FilterDTO filterDTO = service.getFilterById(id);
-        return ResponseEntity.ok(filterDTO);
+    public ResponseEntity<FilterModelDTO> getFilterModelById(Long id) {
+        FilterModelDTO filterModelDTO = service.getFilterModelById(id);
+        return ResponseEntity.ok(filterModelDTO);
     }
 
     @PostMapping
-    public ResponseEntity<FilterDTO> createFilter(@RequestBody @Valid FilterDTO filterDTO) {
-        return ResponseEntity.status(201).body(service.createFilter(filterDTO));
+    public ResponseEntity<FilterModelDTO> createFilterModel(@RequestBody @Valid FilterModelDTO filterModelDTO) {
+        return ResponseEntity.status(201).body(service.createFilterModel(filterModelDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FilterDTO> updateFilter(@PathVariable Long id, @RequestBody @Valid FilterDTO filterDTO) {
+    public ResponseEntity<FilterModelDTO> updateFilterModel(@PathVariable Long id, @RequestBody @Valid FilterModelDTO filterModelDTO) {
         try {
-            return ResponseEntity.ok(service.updateFilter(id, filterDTO));
+            return ResponseEntity.ok(service.updateFilterModel(id, filterModelDTO));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFiter(@PathVariable Long id) {
-        service.deleteFilter(id);
+    public ResponseEntity<Void> deleteFiterModel(@PathVariable Long id) {
+        service.deleteFilterModel(id);
         return ResponseEntity.noContent().build();
     }
 }

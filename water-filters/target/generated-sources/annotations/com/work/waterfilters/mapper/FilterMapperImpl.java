@@ -1,7 +1,7 @@
 package com.work.waterfilters.mapper;
 
-import com.work.waterfilters.dto.FilterDTO;
-import com.work.waterfilters.entity.Filter;
+import com.work.waterfilters.dto.FilterModelDTO;
+import com.work.waterfilters.entity.FilterModels;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -9,61 +9,61 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-14T11:50:52+0300",
+    date = "2026-06-22T14:30:29+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.10 (Oracle Corporation)"
 )
 @Component
 public class FilterMapperImpl implements FilterMapper {
 
     @Override
-    public Filter toEntity(FilterDTO filterDTO) {
+    public FilterModels toEntity(FilterModelDTO filterDTO) {
         if ( filterDTO == null ) {
             return null;
         }
 
-        Filter filter = new Filter();
+        FilterModels filterModels = new FilterModels();
 
-        if ( filterDTO.getFilterId() != null ) {
-            filter.setFilterId( filterDTO.getFilterId().longValue() );
+        if ( filterDTO.getModelId() != null ) {
+            filterModels.setModelId( filterDTO.getModelId().longValue() );
         }
-        filter.setModel( filterDTO.getModel() );
-        filter.setDescription( filterDTO.getDescription() );
-        filter.setPrice( filterDTO.getPrice() );
-        filter.setQuantity( filterDTO.getQuantity() );
-        filter.setPhasesNum( filterDTO.getPhasesNum() );
+        filterModels.setModel( filterDTO.getModel() );
+        filterModels.setDescription( filterDTO.getDescription() );
+        filterModels.setPrice( filterDTO.getPrice() );
+        filterModels.setQuantity( filterDTO.getQuantity() );
+        filterModels.setPhasesNum( filterDTO.getPhasesNum() );
 
-        return filter;
+        return filterModels;
     }
 
     @Override
-    public FilterDTO toDTO(Filter filter) {
+    public FilterModelDTO toDTO(FilterModels filter) {
         if ( filter == null ) {
             return null;
         }
 
-        FilterDTO filterDTO = new FilterDTO();
+        FilterModelDTO filterModelDTO = new FilterModelDTO();
 
-        if ( filter.getFilterId() != null ) {
-            filterDTO.setFilterId( filter.getFilterId().intValue() );
+        if ( filter.getModelId() != null ) {
+            filterModelDTO.setModelId( filter.getModelId().intValue() );
         }
-        filterDTO.setModel( filter.getModel() );
-        filterDTO.setDescription( filter.getDescription() );
-        filterDTO.setPrice( filter.getPrice() );
-        filterDTO.setQuantity( filter.getQuantity() );
-        filterDTO.setPhasesNum( filter.getPhasesNum() );
+        filterModelDTO.setModel( filter.getModel() );
+        filterModelDTO.setDescription( filter.getDescription() );
+        filterModelDTO.setPrice( filter.getPrice() );
+        filterModelDTO.setQuantity( filter.getQuantity() );
+        filterModelDTO.setPhasesNum( filter.getPhasesNum() );
 
-        return filterDTO;
+        return filterModelDTO;
     }
 
     @Override
-    public List<FilterDTO> toDTOList(List<Filter> filters) {
+    public List<FilterModelDTO> toDTOList(List<FilterModels> filters) {
         if ( filters == null ) {
             return null;
         }
 
-        List<FilterDTO> list = new ArrayList<FilterDTO>( filters.size() );
-        for ( Filter filter : filters ) {
-            list.add( toDTO( filter ) );
+        List<FilterModelDTO> list = new ArrayList<FilterModelDTO>( filters.size() );
+        for ( FilterModels filterModels : filters ) {
+            list.add( toDTO( filterModels ) );
         }
 
         return list;

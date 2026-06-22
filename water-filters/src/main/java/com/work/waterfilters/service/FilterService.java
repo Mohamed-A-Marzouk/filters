@@ -1,7 +1,7 @@
 package com.work.waterfilters.service;
 
-import com.work.waterfilters.dto.FilterDTO;
-import com.work.waterfilters.entity.Filter;
+import com.work.waterfilters.dto.FilterModelDTO;
+import com.work.waterfilters.entity.FilterModels;
 import com.work.waterfilters.exception.PhoneAlreadyExistsException;
 import com.work.waterfilters.exception.ResourceNotFoundException;
 import com.work.waterfilters.mapper.FilterMapper;
@@ -18,41 +18,41 @@ public class FilterService {
     private final FilterRepository repository;
     private final FilterMapper mapper;
 
-    public List<FilterDTO> getAllFilters() {
+    public List<FilterModelDTO> getAllFilterModels() {
         return mapper.toDTOList(repository.findAll());
     }
 
-    public FilterDTO getFilterById(Long id) {
-        Filter filter = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Filter", "id", id));
-        return mapper.toDTO(filter);
+    public FilterModelDTO getFilterModelById(Long id) {
+        FilterModels filterModel = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Filter Model", "id", id));
+        return mapper.toDTO(filterModel);
     }
 
-    public FilterDTO createFilter(FilterDTO filterDTO) {
-        Optional<Filter> filter = repository.findByModel(filterDTO.getModel());
+    public FilterModelDTO createFilterModel(FilterModelDTO filterModelDTO) {
+        Optional<FilterModels> filter = repository.findByModel(filterModelDTO.getModel());
         if (filter.isPresent()) {
-            throw new PhoneAlreadyExistsException("Filter", "Filter with model " + filterDTO.getModel() + " already exists.");
+            throw new PhoneAlreadyExistsException("Filter", "Filter with model " + filterModelDTO.getModel() + " already exists.");
         }
 
-        Filter saved = repository.save(mapper.toEntity(filterDTO));
+        FilterModels saved = repository.save(mapper.toEntity(filterModelDTO));
         return mapper.toDTO(saved);
     }
 
-    public FilterDTO updateFilter(Long id, FilterDTO filterDTO) {
+    public FilterModelDTO updateFilterModel(Long id, FilterModelDTO filterModelDTO) {
         return repository.findById(id)
                 .map(existing -> {
-                    existing.setModel(filterDTO.getModel());
-                    existing.setPrice(filterDTO.getPrice());
-                    existing.setQuantity(filterDTO.getQuantity());
-                    existing.setPhasesNum(filterDTO.getPhasesNum());
-                    existing.setDescription(filterDTO.getDescription());
+                    existing.setModel(filterModelDTO.getModel());
+                    existing.setPrice(filterModelDTO.getPrice());
+                    existing.setQuantity(filterModelDTO.getQuantity());
+                    existing.setPhasesNum(filterModelDTO.getPhasesNum());
+                    existing.setDescription(filterModelDTO.getDescription());
                     return mapper.toDTO(repository.save(existing));
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Filter", "id", id));
 
     }
 
-    public void deleteFilter(Long id) {
+    public void deleteFilterModel(Long id) {
         repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Filter", "id", id));
         repository.deleteById(id);

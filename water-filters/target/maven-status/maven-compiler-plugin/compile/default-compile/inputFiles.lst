@@ -3,11 +3,11 @@ D:\test\filters\water-filters\src\main\java\com\work\waterfilters\controller\Fil
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\controller\SparePartController.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\controller\TechnicianController.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\CustomerDTO.java
-D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\FilterDTO.java
+D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\FilterModelDTO.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\SparePartDto.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\TechnicianDTO.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\Customer.java
-D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\Filter.java
+D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\FilterModels.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\SparePart.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\Technician.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\exception\ErrorDetails.java
