@@ -7,6 +7,7 @@ D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\FilterMode
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\SparePartDto.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\dto\TechnicianDTO.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\Customer.java
+D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\Filter.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\FilterModels.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\SparePart.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\entity\Technician.java
@@ -15,7 +16,7 @@ D:\test\filters\water-filters\src\main\java\com\work\waterfilters\exception\Glob
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\exception\PhoneAlreadyExistsException.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\exception\ResourceNotFoundException.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\mapper\CustomerMapper.java
-D:\test\filters\water-filters\src\main\java\com\work\waterfilters\mapper\FilterMapper.java
+D:\test\filters\water-filters\src\main\java\com\work\waterfilters\mapper\FilterModelMapper.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\mapper\SparePartMapper.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\mapper\TechnicianMapper.java
 D:\test\filters\water-filters\src\main\java\com\work\waterfilters\repository\CustomerRepository.java
