@@ -22,7 +22,7 @@ public class SparePartController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SparePartDto> getSparePartById(Long id) {
+    public ResponseEntity<SparePartDto> getSparePartById(@PathVariable Long id) {
         SparePartDto sparePartDto = service.getSparePartById(id);
         return ResponseEntity.ok(sparePartDto);
     }

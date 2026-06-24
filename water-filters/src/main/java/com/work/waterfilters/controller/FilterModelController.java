@@ -22,7 +22,7 @@ public class FilterModelController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FilterModelDTO> getFilterModelById(Long id) {
+    public ResponseEntity<FilterModelDTO> getFilterModelById(@PathVariable Long id) {
         FilterModelDTO filterModelDTO = service.getFilterModelById(id);
         return ResponseEntity.ok(filterModelDTO);
     }
