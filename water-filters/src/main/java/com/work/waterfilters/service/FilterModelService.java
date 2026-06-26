@@ -16,26 +16,27 @@ import java.util.Optional;
 @Service
 public class FilterModelService {
     private final FilterModelRepository repository;
-    private final FilterModelMapper mapper;
 
     public List<FilterModelDTO> getAllFilterModels() {
-        return mapper.toDTOList(repository.findAll());
+        return FilterModelMapper.toDTOList(repository.findAll());
     }
 
     public FilterModelDTO getFilterModelById(Long id) {
         FilterModels filterModel = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Filter Model", "id", id));
-        return mapper.toDTO(filterModel);
+                () -> new ResourceNotFoundException("Filter Model", "id", id+""));
+        return FilterModelMapper.toDTO(filterModel);
     }
 
     public FilterModelDTO createFilterModel(FilterModelDTO filterModelDTO) {
-        Optional<FilterModels> filter = repository.findByModel(filterModelDTO.getModel());
-        if (filter.isPresent()) {
-            throw new PhoneAlreadyExistsException("Filter", "Filter with model " + filterModelDTO.getModel() + " already exists.");
+        Optional<FilterModels> filterModel = repository.findByModel(filterModelDTO.getModel());
+        if (filterModel.isPresent()) {
+            throw new PhoneAlreadyExistsException("Filter Model", "Filter Model " + filterModelDTO.getModel() + " already exists.");
         }
 
-        FilterModels saved = repository.save(mapper.toEntity(filterModelDTO));
-        return mapper.toDTO(saved);
+        filterModel = Optional.ofNullable(FilterModelMapper.toEntity(filterModelDTO));
+//        filterModel.ifPresent(f -> f.setModel(filterModelDTO.getModel()));
+        FilterModels saved = repository.save(filterModel.orElseThrow(() -> new ResourceNotFoundException("Filter Model", "model", filterModelDTO.getModel())));
+        return FilterModelMapper.toDTO(saved);
     }
 
     public FilterModelDTO updateFilterModel(Long id, FilterModelDTO filterModelDTO) {
@@ -46,15 +47,15 @@ public class FilterModelService {
                     existing.setQuantity(filterModelDTO.getQuantity());
                     existing.setPhasesNum(filterModelDTO.getPhasesNum());
                     existing.setDescription(filterModelDTO.getDescription());
-                    return mapper.toDTO(repository.save(existing));
+                    return FilterModelMapper.toDTO(repository.save(existing));
                 })
-                .orElseThrow(() -> new ResourceNotFoundException("Filter", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Filter", "id", id+""));
 
     }
 
     public void deleteFilterModel(Long id) {
         repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Filter", "id", id));
+                () -> new ResourceNotFoundException("Filter", "id", id+""));
         repository.deleteById(id);
     }
 

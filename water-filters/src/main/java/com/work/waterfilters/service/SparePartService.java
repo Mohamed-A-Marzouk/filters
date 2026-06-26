@@ -27,7 +27,7 @@ public class SparePartService {
 
     public SparePartDto getSparePartById(Long id) {
         SparePart sparePart = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Spare Part", "id", id));
+                () -> new ResourceNotFoundException("Spare Part", "id", id+""));
         return mapper.toDto(sparePart);
     }
 
@@ -53,13 +53,13 @@ public class SparePartService {
                     }
                     return mapper.toDto(repository.save(existing));
                 })
-                .orElseThrow(() -> new ResourceNotFoundException("SparePart", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("SparePart", "id", id+""));
 
     }
 
     public void deleteSparePart(Long id) {
         repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("SparePart", "id", id));
+                () -> new ResourceNotFoundException("SparePart", "id", id+""));
         repository.deleteById(id);
     }
 }

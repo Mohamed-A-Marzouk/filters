@@ -27,7 +27,7 @@ public class CustomerService {
     public CustomerDTO getCustomerById(Long id) {
 
        Customer customer = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Customer", "id", id));
+                () -> new ResourceNotFoundException("Customer", "id", id+""));
         return mapper.toDTO(customer);
     }
 
@@ -53,13 +53,13 @@ public class CustomerService {
                     }
                     return mapper.toDTO(repository.save(existing));
                 })
-                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", id+""));
 
     }
 
     public void deleteCustomer(Long id) {
         repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Customer", "id", id));
+                () -> new ResourceNotFoundException("Customer", "id", id+""));
         repository.deleteById(id);
     }
 }

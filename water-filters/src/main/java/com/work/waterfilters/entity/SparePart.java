@@ -19,7 +19,7 @@ public class SparePart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "part_id")
-    private Integer partId;
+    private Long partId;
 
     @Column(name = "part_name", unique = true, nullable = false)
     private String partName;

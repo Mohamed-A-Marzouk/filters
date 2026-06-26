@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -26,4 +28,6 @@ public class FilterModelDTO {
     private Integer quantity;
     @Valid
     private Integer phasesNum;
+    @Valid
+    private List<PhaseDTO> phases;
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-24T12:59:01+0300",
+    date = "2026-06-25T14:05:12+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.10 (Oracle Corporation)"
 )
 @Component
@@ -23,9 +23,7 @@ public class TechnicianMapperImpl implements TechnicianMapper {
 
         TechnicianDTO technicianDTO = new TechnicianDTO();
 
-        if ( technician.getTechnicianId() != null ) {
-            technicianDTO.setTechnicianId( technician.getTechnicianId().longValue() );
-        }
+        technicianDTO.setTechnicianId( technician.getTechnicianId() );
         technicianDTO.setName( technician.getName() );
         technicianDTO.setPhone( technician.getPhone() );
         technicianDTO.setAddress( technician.getAddress() );
@@ -43,9 +41,7 @@ public class TechnicianMapperImpl implements TechnicianMapper {
 
         Technician technician = new Technician();
 
-        if ( dto.getTechnicianId() != null ) {
-            technician.setTechnicianId( dto.getTechnicianId().intValue() );
-        }
+        technician.setTechnicianId( dto.getTechnicianId() );
         technician.setName( dto.getName() );
         technician.setPhone( dto.getPhone() );
         technician.setAddress( dto.getAddress() );

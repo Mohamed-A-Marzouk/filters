@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/filters")
+@RequestMapping("/api/filter-models")
 @CrossOrigin("*")
 public class FilterModelController {
     private final FilterModelService service;

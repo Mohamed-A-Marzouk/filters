@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-24T12:59:01+0300",
+    date = "2026-06-25T14:05:12+0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.10 (Oracle Corporation)"
 )
 @Component
@@ -23,7 +23,9 @@ public class SparePartMapperImpl implements SparePartMapper {
 
         SparePart sparePart = new SparePart();
 
-        sparePart.setPartId( sparePartDto.getPartId() );
+        if ( sparePartDto.getPartId() != null ) {
+            sparePart.setPartId( sparePartDto.getPartId().longValue() );
+        }
         sparePart.setPartName( sparePartDto.getPartName() );
         sparePart.setPartDesc( sparePartDto.getPartDesc() );
         sparePart.setPrice( sparePartDto.getPrice() );
@@ -41,7 +43,9 @@ public class SparePartMapperImpl implements SparePartMapper {
 
         SparePartDto sparePartDto = new SparePartDto();
 
-        sparePartDto.setPartId( sparePart.getPartId() );
+        if ( sparePart.getPartId() != null ) {
+            sparePartDto.setPartId( sparePart.getPartId().intValue() );
+        }
         sparePartDto.setPartName( sparePart.getPartName() );
         sparePartDto.setPartDesc( sparePart.getPartDesc() );
         sparePartDto.setPrice( sparePart.getPrice() );

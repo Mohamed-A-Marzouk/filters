@@ -25,7 +25,7 @@ public class TechnicianService {
 
     public TechnicianDTO getTechnicianById(Long id) {
         Technician technician = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Technician", "id", id));
+                () -> new ResourceNotFoundException("Technician", "id", id+""));
         return mapper.toDTO(technician);
     }
 
@@ -50,12 +50,12 @@ public class TechnicianService {
                     }
                     return mapper.toDTO(repository.save(existing));
                 })
-                .orElseThrow(() -> new ResourceNotFoundException("Technician", "id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Technician", "id", id+""));
 
     }
     public void deleteTechnician(Long id) {
         repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Technician", "id", id));
+                () -> new ResourceNotFoundException("Technician", "id", id+""));
         repository.deleteById(id);
     }
 
