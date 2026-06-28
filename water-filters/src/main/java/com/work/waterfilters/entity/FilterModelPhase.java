@@ -1,22 +1,23 @@
 package com.work.waterfilters.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "filter_model_phase")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class FilterModelPhase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "filter_model_phase_id")
-    private Long id;
+    private Integer filterModelPhaseId;
 
     @Column(name = "phase_num", nullable = false)
     private Integer phaseNum;
@@ -26,6 +27,7 @@ public class FilterModelPhase {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id", nullable = false)
-    private FilterModels model;
+    private FilterModel model;
 
+    // getters and setters
 }

@@ -7,8 +7,7 @@ import jakarta.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FilterDto {
-    private Long id;
+public class FilterRequest {
 
     @NotBlank(message = "Serial number is mandatory")
     @Size(max = 100)

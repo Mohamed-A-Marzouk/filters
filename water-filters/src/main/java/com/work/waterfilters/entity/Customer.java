@@ -1,43 +1,50 @@
 package com.work.waterfilters.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import java.time.LocalDate;
-
-@Setter
-@Getter
-@AllArgsConstructor
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "customers", uniqueConstraints = {
-        @UniqueConstraint(name = "Phone_UNIQUE", columnNames = "phone")
-})
+@Table(name = "customers")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private Long customerId;
+    private Integer customerId;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(name = "phone", nullable = false, length = 20, unique = true)
+    @Column(nullable = false, unique = true, length = 20)
     private String phone;
 
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String email;
 
-    @Column(name = "address", nullable = false, length = 255)
+    @Column(nullable = false, length = 255)
     private String address;
 
     @Column(name = "registration_date")
-    private LocalDate registrationDate;
+    private Timestamp registrationDate;
 
-    @Column(name = "status")
     private Boolean status;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Filter> filters = new ArrayList<>();
+
+    // getters and setters
 }

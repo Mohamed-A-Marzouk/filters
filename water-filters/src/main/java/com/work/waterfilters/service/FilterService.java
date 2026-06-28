@@ -1,14 +1,12 @@
 package com.work.waterfilters.service;
 
-import com.work.waterfilters.dto.FilterDto;
-import com.work.waterfilters.dto.FilterModelDTO;
+import com.work.waterfilters.dto.FilterRequest;
 import com.work.waterfilters.entity.Customer;
 import com.work.waterfilters.entity.Filter;
 import com.work.waterfilters.entity.FilterModels;
 import com.work.waterfilters.exception.PhoneAlreadyExistsException;
 import com.work.waterfilters.exception.ResourceNotFoundException;
 import com.work.waterfilters.mapper.FilterMapper;
-import com.work.waterfilters.mapper.FilterModelMapper;
 import com.work.waterfilters.repository.CustomerRepository;
 import com.work.waterfilters.repository.FilterModelRepository;
 import com.work.waterfilters.repository.FilterRepository;
@@ -25,41 +23,49 @@ public class FilterService {
     private final FilterRepository repository;
     private final CustomerRepository customerRepository;
     private final FilterModelRepository filterModelRepository;
-    public List<FilterDto> getAllFilters() {
+    public List<FilterRequest> getAllFilters() {
         return FilterMapper.toDTOList(repository.findAll());
     }
 
-    public FilterDto getFilterById(Long id) {
+    public List<FilterRequest> getCustomerFilters(Long customerId) {
+        Customer customer = customerRepository.findById(customerId).orElseThrow(
+                () -> new ResourceNotFoundException("Customer", "id", customerId+""));
+
+        return FilterMapper.toDTOList(repository.findByCustomer_CustomerId(customer.getCustomerId()).orElseThrow(
+                () -> new ResourceNotFoundException("Filters for Customer", "customerId", customerId+"")));
+    }
+
+    public FilterRequest getFilterById(Long id) {
         Filter filter = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Filter ", "id", id+""));
         return FilterMapper.toDto(filter);
     }
 
-    public FilterDto getFilterBySerialNum(String serialNumber) {
+    public FilterRequest getFilterBySerialNum(String serialNumber) {
         Filter filter = repository.findBySerialNum(serialNumber).orElseThrow(
                 () -> new ResourceNotFoundException("Filter ", "Serial number", serialNumber));
         return FilterMapper.toDto(filter);
     }
 
-    public FilterDto createFilter(@Valid FilterDto filterDto) {
-        Optional<Filter> filter = repository.findBySerialNum(filterDto.getSerialNum());
+    public FilterRequest createFilter(@Valid FilterRequest filterRequest) {
+        Optional<Filter> filter = repository.findBySerialNum(filterRequest.getSerialNum());
         if (filter.isPresent()) {
-            throw new PhoneAlreadyExistsException("Filter", "Filter with Serial Number " + filterDto.getSerialNum() + " already exists.");
+            throw new PhoneAlreadyExistsException("Filter", "Filter with Serial Number " + filterRequest.getSerialNum() + " already exists.");
         }
 
-        Customer customer = customerRepository.findById(filterDto.getCustomerId()).orElseThrow(
-                () -> new ResourceNotFoundException("Customer", "id", filterDto.getCustomerId()+""));
+        Customer customer = customerRepository.findById(filterRequest.getCustomerId()).orElseThrow(
+                () -> new ResourceNotFoundException("Customer", "id", filterRequest.getCustomerId()+""));
 
-        FilterModels filterModel = filterModelRepository.findById(filterDto.getModelId()).orElseThrow(
-                () -> new ResourceNotFoundException("Filter Model", "id", filterDto.getModelId()+""));
+        FilterModels filterModel = filterModelRepository.findById(filterRequest.getModelId()).orElseThrow(
+                () -> new ResourceNotFoundException("Filter Model", "id", filterRequest.getModelId()+""));
 
-        filter = Optional.ofNullable(FilterMapper.toEntity(filterDto));
+        filter = Optional.ofNullable(FilterMapper.toEntity(filterRequest));
 
         filter.ifPresent(f -> {
             f.setCustomer(customer);
             f.setModel(filterModel);
-            f.setLocation((filterDto.getLocation() == null || filterDto.getLocation().isEmpty()) ?
-                    customer.getAddress() : filterDto.getLocation());
+            f.setLocation((filterRequest.getLocation() == null || filterRequest.getLocation().isEmpty()) ?
+                    customer.getAddress() : filterRequest.getLocation());
             f.addPhases(filterModel.getPhases());
         });
 

@@ -1,8 +1,6 @@
 package com.work.waterfilters.controller;
 
-import com.work.waterfilters.dto.FilterDto;
-import com.work.waterfilters.dto.FilterModelDTO;
-import com.work.waterfilters.service.FilterModelService;
+import com.work.waterfilters.dto.FilterRequest;
 import com.work.waterfilters.service.FilterService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,25 +17,30 @@ public class FilterController {
     private final FilterService service;
 
     @GetMapping
-    public ResponseEntity<List<FilterDto>> getAllFilters() {
+    public ResponseEntity<List<FilterRequest>> getAllFilters() {
         return ResponseEntity.ok(service.getAllFilters());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<FilterDto> getFilterById(@PathVariable Long id) {
-        FilterDto filterDto = service.getFilterById(id);
-        return ResponseEntity.ok(filterDto);
+    @GetMapping("/{customerId}")
+    public ResponseEntity<List<FilterRequest>> getCustomerFilters(@PathVariable Long customerId) {
+        return ResponseEntity.ok(service.getCustomerFilters(customerId));
     }
 
-    @GetMapping("/{serialNumber}")
-    public ResponseEntity<FilterDto> getFilterBySerialNum(@PathVariable String serialNumber) {
-        FilterDto filterDto = service.getFilterBySerialNum(serialNumber);
-        return ResponseEntity.ok(filterDto);
+    @GetMapping("/id/{id}")
+    public ResponseEntity<FilterRequest> getFilterById(@PathVariable Long id) {
+        FilterRequest filterRequest = service.getFilterById(id);
+        return ResponseEntity.ok(filterRequest);
+    }
+
+    @GetMapping("/serial/{serialNumber}")
+    public ResponseEntity<FilterRequest> getFilterBySerialNum(@PathVariable String serialNumber) {
+        FilterRequest filterRequest = service.getFilterBySerialNum(serialNumber);
+        return ResponseEntity.ok(filterRequest);
     }
 
     @PostMapping
-    public ResponseEntity<FilterDto> createFilter(@RequestBody @Valid FilterDto filterDto) {
-        return ResponseEntity.status(201).body(service.createFilter(filterDto));
+    public ResponseEntity<FilterRequest> createFilter(@RequestBody @Valid FilterRequest filterRequest) {
+        return ResponseEntity.status(201).body(service.createFilter(filterRequest));
     }
 
 //    @PutMapping("/{id}")

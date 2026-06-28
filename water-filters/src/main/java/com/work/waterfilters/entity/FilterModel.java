@@ -1,34 +1,34 @@
 package com.work.waterfilters.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.work.waterfilters.dto.PhaseDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "filter_models", uniqueConstraints = {
-        @UniqueConstraint(name = "model", columnNames = "model")
-})
-public class FilterModels {
+@Table(name = "filter_models")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class FilterModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "model_id")
-    private Long modelId;
+    private Integer modelId;
 
-    @Column(name = "model", nullable = false, unique = true, length = 100)
+    @Column(nullable = false, unique = true, length = 100)
     private String model;
 
     @Column(name = "desciption", nullable = false, length = 1000)
-    private String description;
+    private String desciption;
 
     @Column(nullable = false)
     private Integer price;
@@ -39,8 +39,15 @@ public class FilterModels {
     @Column(name = "phases_num", nullable = false)
     private Integer phasesNum;
 
-    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<FilterModelPhase> phases;
+    @JsonIgnore
+    @OneToMany(mappedBy = "model",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<FilterModelPhase> phases = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "model")
+    private List<Filter> filters = new ArrayList<>();
 
     public void addPhases(List<PhaseDTO> phases) {
         if (this.phases == null) {
